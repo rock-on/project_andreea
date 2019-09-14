@@ -1,5 +1,5 @@
 <template>
-  <HelloWorld />
+  <div> Andreea </div>
 </template>
 
 <script>
