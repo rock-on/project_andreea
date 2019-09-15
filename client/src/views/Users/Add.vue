@@ -1,51 +1,57 @@
 <template>
   <form>
     <v-text-field
-      v-model="name"
-      v-validate="'required|min:2|max:10'"
-      :counter="10"
-      :error-messages="errors.collect('name')"
-      label="Name"
-      data-vv-name="name"
+      v-model="user.fname"
+      v-validate="'required|min:2|max:100'"
+      :error-messages="errors.collect('fname')"
+      label="First Name"
+      data-vv-name="fname"
       required
     ></v-text-field>
     <v-text-field
-      v-model="email"
+      v-model="user.lname"
+      v-validate="'required|min:2|max:100'"
+      :error-messages="errors.collect('lname')"
+      label="Last Name"
+      data-vv-name="lname"
+      required
+    ></v-text-field>
+    <v-text-field
+      v-model="user.username"
+      v-validate="'required|min:2|max:100'"
+      :error-messages="errors.collect('username')"
+      label="Username"
+      data-vv-name="username"
+      required
+    ></v-text-field>
+    <v-text-field 
+      v-validate="'required|min:6|max:100'"                       
+      v-model="user.password"
+      label="Password"
+      :error-messages="errors.collect('password')"
+      data-vv-name="password"
+      :append-icon="show ? 'visibility' : 'visibility_off'"
+      :type="show ? 'text' : 'password'"
+      hint="At least 8 characters"
+      counter
+      @click:append="show = !show"
+    ></v-text-field>
+    <v-text-field
+      v-model="user.email"
       v-validate="'required|email'"
       :error-messages="errors.collect('email')"
       label="E-mail"
       data-vv-name="email"
       required
     ></v-text-field>
-    <v-select
-      v-model="select"
-      v-validate="'required'"
-      :items="items"
-      :error-messages="errors.collect('select')"
-      label="Select"
-      data-vv-name="select"
-      required
-    ></v-select>
-    <v-checkbox
-      v-model="checkbox"
-      v-validate="'required'"
-      :error-messages="errors.collect('checkbox')"
-      value="1"
-      label="Option"
-      data-vv-name="checkbox"
-      type="checkbox"
-      required
-    ></v-checkbox>
 
     <v-btn class="mr-4" @click="submit">submit</v-btn>
-    <v-btn @click="clear">clear</v-btn>
   </form>
 </template>
 <script>
-  import Vue from 'vue'
-  import VeeValidate from 'vee-validate'
-
-  Vue.use(VeeValidate)
+  import HttpService from "../../_services/HttpService"
+  import FormErrorFactory from "../../_services/FormErrorFactory"
+  import UserAccessService from "../../_services/UserAccessService"
 
   export default {
     $_veeValidate: {
@@ -53,32 +59,15 @@
     },
 
     data: () => ({
-      name: '',
-      email: '',
-      select: null,
-      items: [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
-      ],
-      checkbox: null,
-      dictionary: {
-        attributes: {
-          email: 'E-mail Address',
-          // custom attributes
-        },
-        custom: {
-          name: {
-            required: () => 'Name can not be empty',
-            max: 'The name field may not be greater than 10 characters',
-            // custom messages
-          },
-          select: {
-            required: 'Select field is required',
-          },
-        },
+      show: false,
+      user: {
+        fname: null,
+        lname: null,
+        username: null,
+        password: null,
+        email: null,
       },
+      dictionary: FormErrorFactory.userErrorMessages
     }),
 
     mounted () {
@@ -86,16 +75,32 @@
     },
 
     methods: {
-      submit () {
-        this.$validator.validateAll()
+      onValidateAll() {
+          let newItem = {
+            fname: this.user.fname,
+            lname: this.user.lname,
+            username: this.user.username,
+            password: this.user.password,
+            email: this.user.email,               
+          };
+
+          UserAccessService.addUser(newItem)
+              .then(result => {
+                  console.log('User-ul a fost adaugat cu succes');
+                  this.$router.push({
+                      name: Constants.ROUTES.USERS
+                  });
+              })
       },
-      clear () {
-        this.name = ''
-        this.email = ''
-        this.select = null
-        this.checkbox = null
-        this.$validator.reset()
-      },
+      submit() {
+          let v = this.$validator;
+          this.$validator.validateAll();
+          setTimeout(() => {
+              if (v.errors.items.length === 0) {
+                  this.onValidateAll();
+              }
+          });
+        }
     },
   }
 </script>

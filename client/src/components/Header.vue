@@ -31,7 +31,7 @@
 <script>
 export default {
     data: () => ({
-      drawer: null,
+      drawer: false,
     }),
     created () {
       this.$vuetify.theme.dark = true

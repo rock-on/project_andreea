@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Constants from './_services/Constants'
 
 import Home from './views/Home.vue'
 import Users from './views/Users/List.vue'
 import AddUser from './views/Users/Add.vue'
 import UpdateUser from './views/Users/Update.vue'
-
 
 Vue.use(Router)
 
@@ -15,22 +15,22 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: Constants.ROUTES.HOME,
       component: Home
     },
     {
       path:'/users',
-      name: 'users',
+      name: Constants.ROUTES.USERS,
       component: Users
     },
     {
       path:'/users/add',
-      name: 'users-add',
+      name: Constants.ROUTES.USERS_ADD,
       component: AddUser
     },
     {
       path:'/users/update/:id',
-      name: 'users-update',
+      name: Constants.ROUTES.USERS_UPDATE,
       component: UpdateUser
     }
   ]
