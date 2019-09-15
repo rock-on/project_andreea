@@ -52,6 +52,7 @@
   import HttpService from "../../_services/HttpService"
   import FormErrorFactory from "../../_services/FormErrorFactory"
   import UserAccessService from "../../_services/UserAccessService"
+  import Constants from "../../_services/Constants"
 
   export default {
     $_veeValidate: {
@@ -91,6 +92,11 @@
                       name: Constants.ROUTES.USERS
                   });
               })
+              .catch(error => {
+                  if(error.message){
+                    console.log('Muie');
+                  }
+              });
       },
       submit() {
           let v = this.$validator;

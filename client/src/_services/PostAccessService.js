@@ -2,9 +2,9 @@ import HttpService from './HttpService';
 import RestConstants from './RestConstants';
 
 export default {
-    addUser: function (user) {
+    addPost: function (post) {
         return new Promise(function (resolve, reject) {
-            HttpService.post(RestConstants.USERS, user)
+            HttpService.post(RestConstants.POSTS, post)
                 .then(result => {
                     return resolve(result);
                 })
@@ -12,5 +12,5 @@ export default {
                     return reject(err);
                 });
         });
-    },
+    }
 }

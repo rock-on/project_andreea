@@ -1,3 +1,4 @@
 export default {
-    USERS: 'api/users/'
+    USERS: 'api/users/',
+    POSTS: 'api/posts/'
 }
