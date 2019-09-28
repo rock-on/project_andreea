@@ -2,20 +2,19 @@
   <div>
     <v-navigation-drawer v-model="drawer" app clipped>
       <v-list dense>
-        <v-list-item @click>
-          <v-list-item-action>
-            <v-icon>mdi-view-dashboard</v-icon>
-          </v-list-item-action>
+        <v-list-item>
           <v-list-item-content>
-            <v-list-item-title>Dashboard</v-list-item-title>
+            <router-link :to="{name: constants.ROUTES.HOME}">Home</router-link>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click>
-          <v-list-item-action>
-            <v-icon>mdi-settings</v-icon>
-          </v-list-item-action>
+        <v-list-item>
           <v-list-item-content>
-            <v-list-item-title>Settings</v-list-item-title>
+            <router-link :to="{name: constants.ROUTES.USERS}">Users</router-link>
+          </v-list-item-content>
+        </v-list-item>
+         <v-list-item>
+          <v-list-item-content>
+            <router-link :to="{name: constants.ROUTES.POSTS}">Posts</router-link>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -29,8 +28,11 @@
 </template>
 
 <script>
+import Constants from '../_services/Constants';
+
 export default {
     data: () => ({
+      constants: Constants,
       drawer: false,
     }),
     created () {

@@ -26,6 +26,7 @@
     ></v-text-field>
 
     <v-btn class="mr-4" @click="submit">submit</v-btn>
+       <v-btn color="primary" :to="{name: constants.ROUTES.POSTS}">Back to Posts</v-btn>
   </form>
 </template>
 <script>

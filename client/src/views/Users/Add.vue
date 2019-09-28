@@ -45,7 +45,9 @@
       required
     ></v-text-field>
 
-    <v-btn class="mr-4" @click="submit">submit</v-btn>
+    <v-btn class="mr-4" color="red" @click="submit">submit</v-btn>
+    <v-btn color="primary" :to="{name: constants.ROUTES.USERS}">Back to Users</v-btn>
+    
   </form>
 </template>
 <script>
@@ -60,6 +62,7 @@
     },
 
     data: () => ({
+      constants: Constants,
       show: false,
       user: {
         fname: null,

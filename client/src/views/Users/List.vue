@@ -69,7 +69,7 @@
           <v-divider></v-divider>
 
           <div class="text-right pa-2">
-            <v-btn class="mr-2" color="black" text @click="dialog=false">Cancel</v-btn>
+            <v-btn class="mr-2" text @click="dialog=false">Cancel</v-btn>
             <v-btn color="primary" @click="deleteUser()">Yes, I'm sure</v-btn>
           </div>
       </v-card>
@@ -87,7 +87,7 @@ export default {
       search: '',
       loading: true,
       headers: [
-        { text: '', value: 'option' },
+        { text: '', sortable: false, value: 'option' },
         { text: '#', sortable: false, value: 'index' },
         { text: 'First Name', value: 'fname' },
         { text: 'Last Name', value: 'lname' },
@@ -101,7 +101,6 @@ export default {
     }),
     mounted() {
       this.onGetItems();
-      
     },
     methods: {
       showModal: function (id, fname, lname) {
