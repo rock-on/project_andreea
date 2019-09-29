@@ -6,6 +6,7 @@
     <v-text-field v-model="editUser.email" v-validate="'required|email'" :error-messages="errors.collect('email')" label="E-mail" data-vv-name="email" required></v-text-field>
 
     <v-btn class="mr-4" @click="submit">submit</v-btn>
+    <v-btn color="primary" :to="{name: constants.ROUTES.USERS}">Back to Users</v-btn>
 </form>
 </template>
 
