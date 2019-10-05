@@ -1,13 +1,13 @@
 <template>
-<form>
-    <v-text-field v-model="editUser.fname" v-validate="'required|min:2|max:100'" :error-messages="errors.collect('fname')" label="First Name" data-vv-name="fname" required></v-text-field>
-    <v-text-field v-model="editUser.lname" v-validate="'required|min:2|max:100'" :error-messages="errors.collect('lname')" label="Last Name" data-vv-name="lname" required></v-text-field>
-    <v-text-field v-model="editUser.username" v-validate="'required|min:2|max:100'" :error-messages="errors.collect('username')" label="Username" data-vv-name="username" required></v-text-field>
-    <v-text-field v-model="editUser.email" v-validate="'required|email'" :error-messages="errors.collect('email')" label="E-mail" data-vv-name="email" required></v-text-field>
+    <form>
+        <v-text-field v-model="editUser.fname" v-validate="'required|min:2|max:100'" :error-messages="errors.collect('fname')" label="First Name" data-vv-name="fname" required></v-text-field>
+        <v-text-field v-model="editUser.lname" v-validate="'required|min:2|max:100'" :error-messages="errors.collect('lname')" label="Last Name" data-vv-name="lname" required></v-text-field>
+        <v-text-field v-model="editUser.username" v-validate="'required|min:2|max:100'" :error-messages="errors.collect('username')" label="Username" data-vv-name="username" required></v-text-field>
+        <v-text-field v-model="editUser.email" v-validate="'required|email'" :error-messages="errors.collect('email')" label="E-mail" data-vv-name="email" required></v-text-field>
 
-    <v-btn class="mr-4" @click="submit">submit</v-btn>
-    <v-btn color="primary" :to="{name: constants.ROUTES.USERS}">Back to Users</v-btn>
-</form>
+        <v-btn class="mr-4" @click="submit">submit</v-btn>
+        <v-btn color="primary" :to="{name: constants.ROUTES.USERS}">Back to Users</v-btn>
+    </form>
 </template>
 
 <script>

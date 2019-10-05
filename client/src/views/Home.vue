@@ -1,16 +1,27 @@
 <template>
-  <div>
-    <v-btn color="primary" class="mr-2" :to="{name: constants.ROUTES.USERS}">Go to Users</v-btn>
-    <v-btn color="primary" :to="{name: constants.ROUTES.POSTS}">Go to Posts</v-btn>
-  </div>
+  <v-container fluid grid-list-xl pa-3>
+      <v-layout text-xs-center row wrap>
+          <service-component 
+            v-for="serviceObj in servicesData"
+            :serviceComponent="serviceObj"
+            :key="serviceObj.id"></service-component>
+      </v-layout>
+  </v-container>
 </template>
 
 <script>
 import Constants from '../_services/Constants'
+import Services from '../_services/Services'
+import ServiceComponent from '../components/ServiceComponent/ServiceComponent'
+
 
 export default {
+    components: {
+        ServiceComponent
+    },
     data: () => ({
-      constants: Constants
+        constants: Constants,
+        servicesData: Services.services,
     })
 }
 </script>
